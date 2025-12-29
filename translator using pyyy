@@ -1,0 +1,73 @@
+from tkinter import *
+from tkinter import ttk
+from googletrans import Translator,LANGUAGES
+
+def change(text="type",src="english",dest="hindi"):
+    text1=text
+    sec1=src
+    dest1=dest
+    trans = Translator()
+    trans1 = trans.translate(text,src=src.lower(),dest=dest.lower())
+    return trans1.text
+
+def data():
+    s = comb_sor.get()
+    d = comb_dest.get()
+    mag = Sor_txt.get(1.0,END)
+    textget = change(text = mag, src=s , dest = d)
+    dest_text.delete(1.0,END)
+    dest_text.insert(END,textget)
+
+root = Tk()
+root.title("Translator")
+root.geometry("500x800")
+root.config(bg = 'green')
+
+lab_text=Label(root,text="Translator",font=("Time New Roman",40,"bold"))
+lab_text.place(x=100,y=40,height=50,width=300)
+
+frame = Frame(root).pack(side=BOTTOM)
+
+Sor_txt = Text(frame,font=("Time New Roman",30,"bold"),wrap=WORD)
+Sor_txt.place(x=10,y=130,height=150,width=480)
+
+Sor_txt = Text(frame,font=("Time New Roman",25,"bold"),wrap=WORD)
+Sor_txt.place(x=10,y=130,height=150,width=480)
+
+list_text = list(LANGUAGES.values())
+
+comb_sor = ttk.Combobox(frame,value=list_text)
+comb_sor.place(x=10,y=300,height=40,width=150)
+comb_sor.set("english")
+
+button_change = Button(frame,text="Translate",relief=RAISED,command=data)
+button_change.place(x=170,y=300,height=40,width=150)
+
+comb_dest = ttk.Combobox(frame,value=list_text)
+comb_dest.place(x=330,y=300,height=40,width=150)
+comb_dest.set("english")
+
+lab_text=Label(root,text="Dest Text",font=("Time New Roman",30,"bold"))
+lab_text.place(x=100,y=360,height=50,width=300)
+
+dest_text = Text(frame,font=("Time New Roman",20,"bold"),wrap=WORD)
+dest_text.place(x=10,y=400,height=130,width=450)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+root.mainloop()
+
+
